@@ -62,9 +62,12 @@ app.post('/upload/:catid', upload.single('image'), async (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server started on http://localhost:${port}`);
 });
+
+server.keepAliveTimeout = 120*1000;
+server.headersTimeout = 12*1000;
 
 
 
@@ -91,6 +94,9 @@ async function uploadImageToFirebaseStorage(file) {
     throw error;
   }
 }
+
+
+// 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
 
 
 // pd, ct, st, wd, bd, bw, pt, fn
